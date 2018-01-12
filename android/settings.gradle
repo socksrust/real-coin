@@ -1,0 +1,3 @@
+rootProject.name = 'RealCoin'
+
+include ':app'
