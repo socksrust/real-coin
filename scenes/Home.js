@@ -1,8 +1,10 @@
 import React from 'react'
-import { StyleSheet, FlatList } from 'react-native'
+import { StyleSheet, FlatList, View } from 'react-native'
 import CoinCard from '../components/CoinCard'
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
-export default class Home extends React.Component {
+class Home extends React.Component {
   render () {
     return (
       <FlatList
@@ -18,7 +20,7 @@ export default class Home extends React.Component {
           {key: 'i', color: '#272C40'},
           {key: 'j', color: '#363D59'},
           {key: 'k', color: '#272C40'},
-          {key: 'l', color: '#363D59'},
+          {key: 'l', color: '#363D59'}
         ]}
         renderItem={({item}) => <CoinCard backgroundColor={item.color}/>}
       />
@@ -26,14 +28,19 @@ export default class Home extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginTop: 90
+//const MY_QUERY = gql`query { todos { text } }`;
+
+const MY_QUERY = gql`
+  query {
+    coins {
+      name
+    }
   }
-})
+`
+
+const HomeWithData = graphql(MY_QUERY)(Home)
+
+export default HomeWithData
+
+
+
