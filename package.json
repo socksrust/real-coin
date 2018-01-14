@@ -15,9 +15,8 @@
     "ios:clear": "cd ios && rm -rf build"
   },
   "dependencies": {
-    "react": "16.2.0",
-    "react-native": "0.52.0",
-    "react-test-renderer": "16.2.0",
+    "apollo-client": "^1.1.1",
+    "apollo-test-utils": "^0.1.1",
     "babel-eslint": "^8.0.3",
     "eslint": "^3.0.0",
     "eslint-config-standard": "^11.0.0-beta.0",
@@ -30,13 +29,15 @@
     "eslint-plugin-react": "^7.5.1",
     "eslint-plugin-react-native": "^3.2.0",
     "eslint-plugin-standard": "^3.0.1",
-    "react-native-router-flux": "^4.0.0-beta.24",
-    "apollo-client": "^1.1.1",
-    "apollo-test-utils": "^0.1.1",
     "false": "0.0.4",
     "graphql": "^0.10.1",
     "graphql-tools": "^0.10.0",
-    "react-apollo": "^1.1.2"
+    "react": "16.2.0",
+    "react-apollo": "^1.1.2",
+    "react-native": "0.52.0",
+    "react-native-router-flux": "^4.0.0-beta.24",
+    "react-test-renderer": "16.2.0",
+    "styled-components": "^2.4.0"
   },
   "devDependencies": {
     "babel-jest": "22.0.6",
