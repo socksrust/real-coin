@@ -1,30 +1,47 @@
 import React from 'react'
-import { StyleSheet, FlatList } from 'react-native'
+import { StyleSheet, FlatList, Text } from 'react-native'
 import CoinCard from '../components/CoinCard'
+import {
+  gql,
+  graphql,
+} from 'react-apollo';
 
-export default class Home extends React.Component {
+class Home extends React.Component {
   render () {
+    const {data: {loading, error, coins}} = this.props
+    if (loading) {
+      return (
+        <Text>Loading...</Text>
+      )
+    }
+
     return (
       <FlatList
-        data={[
-          {key: 'a', color: '#272C40'},
-          {key: 'b', color: '#363D59'},
-          {key: 'c', color: '#272C40'},
-          {key: 'd', color: '#363D59'},
-          {key: 'e', color: '#272C40'},
-          {key: 'f', color: '#363D59'},
-          {key: 'g', color: '#272C40'},
-          {key: 'h', color: '#363D59'},
-          {key: 'i', color: '#272C40'},
-          {key: 'j', color: '#363D59'},
-          {key: 'k', color: '#272C40'},
-          {key: 'l', color: '#363D59'},
-        ]}
-        renderItem={({item}) => <CoinCard backgroundColor={item.color}/>}
+        data={coins.map((coin, key)=>
+          Object.assign({}, coin, {
+            backgroundColor: key % 2 === 0 ? '#272C40' : '#363D59',
+            key
+          })
+
+        )}
+        renderItem={({item}) => <CoinCard key={item.key} image={item.image} displayName={item.displayName} name={item.name} currentPrice={item.price} backgroundColor={item.backgroundColor}/>}
       />
     )
   }
 }
+
+export const homeQuery = gql`
+  query {
+    coins {
+      image
+      displayName
+      name
+      price
+    }
+  }
+`;
+
+export default graphql(homeQuery)(Home);
 
 const styles = StyleSheet.create({
   container: {
